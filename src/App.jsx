@@ -1,6 +1,9 @@
 import "./App.css";
+import { useFetch } from "./hooks/useFetch";
 
 function App() {
+  const { data } = useFetch('http://localhost:3000/tasks'); 
+
   return (
     <div className="App">
       <div className="header">
