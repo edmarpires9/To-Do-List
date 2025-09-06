@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = (myAPI) => {
-  const [data, setData] = useState();
+export const useFetch = (api) => {
+  const [data, setData] = useState(null);
   const [config, setConfig] = useState();
+  const [method, setMethod] = useState();
+  const [callFetch, setCallFetch] = useState(false);
 
   const httpConfig = (method, data) => {
     setConfig({
@@ -12,16 +14,28 @@ export const useFetch = (myAPI) => {
       },
       body: JSON.stringify(data),
     });
+    setMethod(method);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(myAPI);
+      const res = await fetch(api);
       const json = await res.json();
       setData(json);
-    }
+    };
     fetchData();
-  }, [myAPI]);
+  }, [api, callFetch]);
 
+  useEffect(() => {
+    const httpRequest = async () => {
+        if (method === "POST") {
+        let fetchOptions = [api, config];
+        const res = await fetch(...fetchOptions);
+        const json = await res.json();
+        setCallFetch(json);
+      };
+    }
+    httpRequest();
+  }, [config, method, api]);
   return { data, httpConfig };
 };
