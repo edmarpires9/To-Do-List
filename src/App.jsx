@@ -7,13 +7,16 @@ import { useFetch } from "./hooks/useFetch";
 function App() {
   // URL da API
   const api = "http://localhost:3000/tasks";
+  //GET
   const { data, httpConfig } = useFetch(api);
-
+  //POST
   const submitNewTask = async (title) => {
     httpConfig("POST", { title });
-    console.log(data);
-    
   };
+  //DELETE
+  const deleteTask = async (id) => {
+    httpConfig('DELETE', {}, id)    
+  }
 
   return (
     <div className="App">
@@ -23,7 +26,7 @@ function App() {
       <AddTask api={api} submitNewTask={submitNewTask} />
       {/* Exibe as tarefas */}
       {Array.isArray(data) &&
-        data.map((task) => <Task key={task.id} title={task.title} />)}
+        data.map((task) => <Task key={task.id} id={task.id} title={task.title} deleteTask={deleteTask}/>)}
     </div>
   );
 }

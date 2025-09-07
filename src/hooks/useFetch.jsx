@@ -5,8 +5,9 @@ export const useFetch = (api) => {
   const [config, setConfig] = useState();
   const [method, setMethod] = useState();
   const [callFetch, setCallFetch] = useState(false);
+  const [deleteURL, setDeleteURL] = useState();
 
-  const httpConfig = (method, data) => {
+  const httpConfig = (method, data, id) => {
     setConfig({
       method,
       headers: {
@@ -15,6 +16,10 @@ export const useFetch = (api) => {
       body: JSON.stringify(data),
     });
     setMethod(method);
+
+    if (id) {
+      setDeleteURL(api + "/" + id);
+    }
   };
 
   useEffect(() => {
@@ -28,13 +33,20 @@ export const useFetch = (api) => {
 
   useEffect(() => {
     const httpRequest = async () => {
-        if (method === "POST") {
+      if (method === "POST") {
         let fetchOptions = [api, config];
         const res = await fetch(...fetchOptions);
         const json = await res.json();
         setCallFetch(json);
-      };
-    }
+      }
+
+      if (method === "DELETE") {
+        let fetchOptions = [deleteURL, config];
+        const res = await fetch(...fetchOptions);
+        const json = await res.json();
+        setCallFetch(json);
+      }
+    };
     httpRequest();
   }, [config, method, api]);
   return { data, httpConfig };
