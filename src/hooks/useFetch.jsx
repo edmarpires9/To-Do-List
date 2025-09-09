@@ -5,7 +5,7 @@ export const useFetch = (api) => {
   const [config, setConfig] = useState();
   const [method, setMethod] = useState();
   const [callFetch, setCallFetch] = useState(false);
-  const [deleteURL, setDeleteURL] = useState();
+  const [URLWithPathParam, setURLWithPathParam] = useState();
 
   const httpConfig = (method, data, id) => {
     setConfig({
@@ -18,7 +18,7 @@ export const useFetch = (api) => {
     setMethod(method);
 
     if (id) {
-      setDeleteURL(api + "/" + id);
+      setURLWithPathParam(api + "/" + id);
     }
   };
 
@@ -40,14 +40,14 @@ export const useFetch = (api) => {
         setCallFetch(json);
       }
 
-      if (method === "DELETE") {
-        let fetchOptions = [deleteURL, config];
+      if (method === "DELETE" || method === "PATCH") {        
+        let fetchOptions = [URLWithPathParam, config];
         const res = await fetch(...fetchOptions);
         const json = await res.json();
         setCallFetch(json);
       }
     };
     httpRequest();
-  }, [config, method, api]);
+  }, [config, method, api, URLWithPathParam]);
   return { data, httpConfig };
 };

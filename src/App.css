@@ -25,7 +25,7 @@
 .add-task {
   display: flex;
   justify-content: space-around;
-  width: 400px;
+  width: 300px;
   align-items: center;
 }
 
@@ -75,6 +75,12 @@
   height: 20px;
 }
 
+.button-small-green {
+  background-color: green;
+  width: 20px;
+  height: 20px;
+}
+
 .task {
   display: flex;
   justify-content: space-between;
@@ -83,7 +89,7 @@
   padding: 8px 15px;
   margin-top: 5px;
   align-items: center;
-  width: 350px;
+  width: 400px;
   height: 30px;
 }
 
