@@ -22,7 +22,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="border w-96 mx-auto my-5">
       {/* Nome do aplicativo */}
       <div className="bg-purple-500 rounded-t-lg px-4 py-2 flex items-center justify-end w-96">
         <h4 className="text-white text-lg font-semibold">To-Do List</h4>
