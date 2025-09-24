@@ -20,6 +20,7 @@ export const useFetch = (api) => {
     if (id) {
       setURLWithPathParam(api + "/" + id);
     }
+    console.log({url: URLWithPathParam, method: method, data: data});
   };
 
   useEffect(() => {
@@ -45,7 +46,8 @@ export const useFetch = (api) => {
         const res = await fetch(...fetchOptions);
         const json = await res.json();
         setCallFetch(json);
-      }
+        
+      }      
     };
     httpRequest();
   }, [config, method, api, URLWithPathParam]);

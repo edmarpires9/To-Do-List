@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { PlusCircleIcon } from "@heroicons/react/24/solid";
+import { BeakerIcon } from "@heroicons/react/24/solid";
+
 
 const AddTask = ({submitNewTask}) => {
   //Armazena o valor do input
@@ -13,16 +16,16 @@ const AddTask = ({submitNewTask}) => {
   return (
     <div>
       <div>
-        <form className="add-task" onSubmit={handleSubmit}>
+        <form className="flex mt-1" onSubmit={handleSubmit}>
           <input
-            className="input"
+            className="w-80 border p-2"
             type="text"
-            placeholder="Type something"
+            placeholder="Nome da tarefa"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <button className="button button-blue" type="submit">
-            +
+          <button className="mx-4" type="submit">
+            <PlusCircleIcon className="h-10 w-10 text-purple-500 cursor-pointer"/>
           </button>
         </form>
       </div>
