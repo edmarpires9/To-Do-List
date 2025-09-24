@@ -2,7 +2,7 @@
 
 Este é um aplicativo simples de **To-Do List** desenvolvido em **React**, utilizando o **JSON Server** como API fake para simular operações de CRUD (Create, Read, Update, Delete).
 
-<img src="https://github.com/edmarpires9/To-Do-List/blob/main/public/app-preview.png?raw=true" />
+<img src="https://raw.githubusercontent.com/edmarpires9/To-Do-List/refs/heads/main/public/app-preview.png" />
 
 ---
 
